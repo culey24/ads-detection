@@ -1,3 +1,5 @@
+library(GGally)
+
 # ==============================================================================
 # PART 1: PREPROCESSING
 # ==============================================================================
@@ -101,23 +103,19 @@ print(stats_table)
 # Note: Copy this output to create a table in your report
 
 # --- 2. Draw Correlation Matrix ---
-# (Similar to Figure 4.4 - Using GGally library)
-
-# Install library if not already installed (Uncomment the line below if needed)
-# install.packages("GGally")
-library(GGally)
-
 print("Drawing Correlation Matrix... (This might take a while)")
 
 png("correlation_matrix.png", width = 1000, height = 800)
 
 # Draw ggpairs for 3 dimension variables + classified by Label
 # columns = 1:3 means only taking height, width, aratio
-ggpairs(df, 
+p <- ggpairs(df, 
         columns = 1:3, 
-        aes(color = Label, alpha = 0.5), # Color by Ad/Non-ad
+        aes(color = Label, alpha = 0.5), 
         title = "Correlation Matrix of Geometric Features",
-        upper = list(continuous = wrap("cor", size = 5))) # Adjust font size of r coefficient
+        upper = list(continuous = wrap("cor", size = 5)))
+
+print(p) 
 
 dev.off()
 print("Image saved: correlation_matrix.png")
