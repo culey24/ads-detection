@@ -93,6 +93,8 @@ cat(sprintf("Recall:           %.4f\n", recall))
 # ==============================================================================
 
 # Variable Importance Plot (Top 15 variables)
+png("feature_importance.png")  # <--- Thêm dòng này
 varImpPlot(rf_model,
            main = "Variable Importance Plot",
            n.var = 15)
+dev.off()                      # <--- Và dòng này
