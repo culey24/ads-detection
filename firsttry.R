@@ -74,6 +74,54 @@ dev.off()
 
 cat("Saved plots: 'barchart_ad_count.png' and 'boxplot_width.png'\n")
 
+# ==============================================================================
+# SUPPLEMENT: DETAILED DESCRIPTIVE STATISTICS & CORRELATION
+# ==============================================================================
+
+# --- 1. Calculate Summary Statistics ---
+# (Similar to Figure 4.1 in the sample report)
+
+# Select 3 continuous variable columns
+metric_cols <- df[, c("height", "width", "aratio")]
+
+# Create statistics table: Mean, SD (Standard Deviation), Min, Median, Max
+stats_table <- data.frame(
+  Mean   = sapply(metric_cols, mean),
+  SD     = sapply(metric_cols, sd),
+  Min    = sapply(metric_cols, min),
+  Median = sapply(metric_cols, median),
+  Max    = sapply(metric_cols, max)
+)
+
+# Round to 2 decimal places for better presentation
+stats_table <- round(stats_table, 2)
+
+print("--- DESCRIPTIVE STATISTICS TABLE ---")
+print(stats_table)
+# Note: Copy this output to create a table in your report
+
+# --- 2. Draw Correlation Matrix ---
+# (Similar to Figure 4.4 - Using GGally library)
+
+# Install library if not already installed (Uncomment the line below if needed)
+# install.packages("GGally")
+library(GGally)
+
+print("Drawing Correlation Matrix... (This might take a while)")
+
+png("correlation_matrix.png", width = 1000, height = 800)
+
+# Draw ggpairs for 3 dimension variables + classified by Label
+# columns = 1:3 means only taking height, width, aratio
+ggpairs(df, 
+        columns = 1:3, 
+        aes(color = Label, alpha = 0.5), # Color by Ad/Non-ad
+        title = "Correlation Matrix of Geometric Features",
+        upper = list(continuous = wrap("cor", size = 5))) # Adjust font size of r coefficient
+
+dev.off()
+print("Image saved: correlation_matrix.png")
+
 # --- Task 2: Hypothesis Testing ---
 
 # Independent 2-sample T-test
