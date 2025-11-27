@@ -13,7 +13,7 @@ library(caret)
 # Read data file
 tryCatch({
   # Handle potential missing values represented by "?" or "NA"
-  ads_data <- read.csv("ads-detection/clean_data.csv",
+  ads_data <- read.csv("clean_data.csv",
                        na.strings = c("?", "NA"))
   print("Data loaded successfully!")
 }, error = function(e) {
@@ -93,8 +93,8 @@ cat(sprintf("Recall:           %.4f\n", recall))
 # ==============================================================================
 
 # Variable Importance Plot (Top 15 variables)
-png("feature_importance.png")  # <--- Thêm dòng này
+png("feature_importance.png") 
 varImpPlot(rf_model,
            main = "Variable Importance Plot",
            n.var = 15)
-dev.off()                      # <--- Và dòng này
+dev.off()       
