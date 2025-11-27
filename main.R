@@ -140,20 +140,7 @@ cat("PART 1 COMPLETE. Clean data saved to 'clean_data.csv'.\n")
 cat("================================================================\n")
 
 
-# ==============================================================================
-# USER INTERACTION: CONTINUE OR STOP?
-# ==============================================================================
-
-# Yêu cầu người dùng nhập liệu để tiếp tục
-cat("\nDo you want to continue to Random Forest?\n")
-user_input <- readline(prompt = "Y for continue, N for stop: ")
-
-if (toupper(trimws(user_input)) != "Y") {
-  cat("Terminated, goodbye!\n")
-  quit(save = "no") # Dừng script tại đây nếu không chọn Y
-}
-
-cat("\n>>> USER SELECTED CONTINUE. STARTING PART 2: MACHINE LEARNING <<<\n")
+cat("\n>>> STARTING PART 2: MACHINE LEARNING <<<\n")
 
 
 # ==============================================================================
