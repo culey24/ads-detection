@@ -83,7 +83,7 @@ boxplot(width ~ Label,
         ylab = "Width",
         col = c("tomato", "steelblue"),
         outline = FALSE
-) 
+)
 dev.off()
 
 cat("Saved plots: 'barchart_ad_count.png' and 'boxplot_width.png'\n")
@@ -144,7 +144,17 @@ cat("================================================================\n")
 # USER INTERACTION: CONTINUE OR STOP?
 # ==============================================================================
 
-cat("\n>>> STARTING PART 2: MACHINE LEARNING <<<\n")
+# Yêu cầu người dùng nhập liệu để tiếp tục
+cat("\nDo you want to continue to Random Forest?\n")
+user_input <- readline(prompt = "Y for continue, N for stop: ")
+
+if (toupper(trimws(user_input)) != "Y") {
+  cat("Terminated, goodbye!\n")
+  quit(save = "no") # Dừng script tại đây nếu không chọn Y
+}
+
+cat("\n>>> USER SELECTED CONTINUE. STARTING PART 2: MACHINE LEARNING <<<\n")
+
 
 # ==============================================================================
 # PART 2: RANDOM FOREST MODELING (From random_forest.r)
