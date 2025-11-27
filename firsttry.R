@@ -74,6 +74,32 @@ boxplot(width ~ Label,
 ) # Hiding outliers for better visibility
 dev.off()
 
+# 1. Boxplot: Height Distribution
+png("boxplot_height.png")
+boxplot(height ~ Label,
+        data = df,
+        main = "Height Distribution by Image Type",
+        xlab = "Image Type (Label)",
+        ylab = "Height",
+        col = c("tomato", "steelblue"),
+        outline = FALSE # Tùy chọn: để TRUE nếu muốn thấy outlier
+)
+dev.off()
+
+# 2. Boxplot: Aspect Ratio Distribution
+png("boxplot_aratio.png")
+boxplot(aratio ~ Label,
+        data = df,
+        main = "Aspect Ratio Distribution by Image Type",
+        xlab = "Image Type (Label)",
+        ylab = "Aspect Ratio",
+        col = c("tomato", "steelblue"),
+        outline = FALSE
+)
+dev.off()
+
+cat("Saved additional plots: 'boxplot_height.png' and 'boxplot_aratio.png'\n")
+
 cat("Saved plots: 'barchart_ad_count.png' and 'boxplot_width.png'\n")
 
 # ==============================================================================
@@ -142,3 +168,13 @@ if (t_test_result$p.value < 0.05) {
   cat("Conclusion: Fail to reject H0.",
       "Not enough evidence to suggest a difference.\n")
 }
+
+# --- Kiểm định thử cho Height ---
+cat("\n>>> TEST FOR HEIGHT <<<\n")
+t_test_height <- t.test(height ~ Label, data = df)
+print(t_test_height)
+
+# --- Kiểm định thử cho Aspect Ratio ---
+cat("\n>>> TEST FOR ASPECT RATIO <<<\n")
+t_test_aratio <- t.test(aratio ~ Label, data = df)
+print(t_test_aratio)
