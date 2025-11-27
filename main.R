@@ -6,8 +6,6 @@
 # GLOBAL SETUP: LOAD LIBRARIES
 # ------------------------------------------------------------------------------
 # Kiểm tra và load tất cả thư viện cần thiết ngay từ đầu
-install.packages('GGally', dependencies=TRUE, repos="https://CRAN.R-project.org/")
-library(GGally)
 required_packages <- c("GGally", "tidyverse", "randomForest", "caret")
 for (pkg in required_packages) {
   if (!require(pkg, character.only = TRUE)) {
